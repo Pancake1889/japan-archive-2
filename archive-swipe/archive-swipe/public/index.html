@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <title>ARCHIVE SWIPE / Pinterest curator</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://i.pinimg.com">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-theme="archive">
+  <div class="grain"></div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Archive Swipe ana sayfa">
+      <span class="brand-mark">A<span>/</span>S</span>
+      <span class="brand-copy"><strong>ARCHIVE SWIPE</strong><small>PERSONAL VISUAL INDEX · VOL. 01</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="live-dot" id="connectionDot"></span><span class="connection-label" id="connectionLabel">DEMO MODE</span>
+      <button class="outline-btn" id="pinterestLogin">↗ CONNECT PINTEREST</button>
+      <button class="icon-btn" id="settingsToggle" aria-label="Ayarları aç">☷</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="intro-row">
+      <div>
+        <p class="eyebrow">YOUR TASTE, ONE FRAME AT A TIME</p>
+        <h1>COLLECT YOUR<br><em>own universe.</em></h1>
+      </div>
+      <p class="intro-note">Scroll fatigue is over.<br>Keep what feels like you.</p>
+    </section>
+
+    <section class="workspace">
+      <aside class="left-rail">
+        <div class="rail-block">
+          <p class="rail-label">01 / COLLECTION</p>
+          <button class="source-btn active" data-source="discover"><span>✳</span> Discover mix <small>DEMO</small></button>
+          <button class="source-btn" data-source="account"><span>▧</span> My Pinterest <small id="pinCount">—</small></button>
+        </div>
+        <div class="rail-block theme-block">
+          <p class="rail-label">02 / VISUAL MOOD</p>
+          <div id="themeList" class="theme-list"></div>
+        </div>
+        <div class="rail-block mini-stats">
+          <p class="rail-label">03 / SESSION LOG</p>
+          <div class="stat-line"><span>KEPT</span><b id="keptCount">00</b></div>
+          <div class="stat-line"><span>SKIPPED</span><b id="skippedCount">00</b></div>
+          <div class="stat-line"><span>IN THE STACK</span><b id="remainingCount">—</b></div>
+        </div>
+        <div class="rail-footer">MADE FOR YOUR EYE.<br>NOT FOR THE ALGORITHM.</div>
+      </aside>
+
+      <section class="deck-area" aria-label="Pin kartları">
+        <div class="deck-topline">
+          <span id="deckMode">DISCOVER / CURATED SAMPLE</span>
+          <span id="cardIndex">01 — 10</span>
+        </div>
+        <div class="card-stage" id="cardStage">
+          <article class="pin-card" id="pinCard">
+            <div class="image-wrap"><img id="pinImage" alt="Seçili ilham görseli" draggable="false"></div>
+            <div class="card-shade"></div>
+            <div class="card-top-meta"><span id="pinCategory">VISUAL STUDY / 001</span><span>ARCHIVE®</span></div>
+            <div class="card-bottom">
+              <div><p id="pinIndex" class="card-index">NO. 001 / 010</p><h2 id="pinTitle">Loading image...</h2><p id="pinDescription" class="pin-description"></p></div>
+              <a id="pinLink" class="pin-link" href="#" target="_blank" rel="noreferrer">OPEN PIN ↗</a>
+            </div>
+            <div class="stamp stamp-like" id="likeStamp">KEEP</div>
+            <div class="stamp stamp-nope" id="nopeStamp">PASS</div>
+          </article>
+          <div class="empty-state" id="emptyState" hidden>
+            <span class="empty-symbol">✳</span><p class="eyebrow">END OF THIS STACK</p><h2>You reached<br><em>the last frame.</em></h2><button class="solid-btn" id="restartDeck">RESHUFFLE THE DECK ↻</button>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="round-action skip-action" id="skipBtn" aria-label="Beğenme"><span>×</span></button>
+          <div class="action-hint"><span>← PASS</span><span class="hint-sep">/</span><span>KEEP →</span></div>
+          <button class="round-action like-action" id="likeBtn" aria-label="Beğen ve kaydet"><span>♡</span></button>
+        </div>
+        <p class="keyboard-note">USE ← → ARROW KEYS OR DRAG THE FRAME</p>
+      </section>
+
+      <aside class="right-rail">
+        <div class="rail-block music-panel">
+          <div class="panel-heading"><p class="rail-label">04 / SOUNDTRACK</p><span class="music-wave">♫</span></div>
+          <h3>Set the<br><em>background.</em></h3>
+          <p class="muted-copy">Drop a YouTube link. Let the images find their rhythm.</p>
+          <form id="musicForm" class="music-form">
+            <input id="musicUrl" type="url" placeholder="Paste a YouTube URL" aria-label="YouTube bağlantısı" required>
+            <button type="submit" aria-label="Şarkıyı ekle">＋</button>
+          </form>
+          <div id="playlist" class="playlist"></div>
+          <div class="music-player" id="musicPlayer"><div class="music-placeholder">NO TRACK SELECTED</div></div>
+          <p class="tiny-note">Playback starts only after you select a track.</p>
+        </div>
+        <div class="rail-block board-panel">
+          <p class="rail-label">05 / SAVE DESTINATION</p>
+          <label for="boardSelect">Pinterest board</label>
+          <select id="boardSelect" disabled><option>Connect Pinterest first</option></select>
+          <p id="boardHelp" class="tiny-note">Likes from demo cards stay in this browser. Your Pinterest pins can be saved to a board after connecting.</p>
+        </div>
+        <div class="rail-block quick-add">
+          <p class="rail-label">06 / YOUR OWN LINK</p>
+          <form id="pinUrlForm"><input type="url" id="pinUrlInput" placeholder="Pinterest pin URL"><button type="submit">ADD TO QUEUE ↗</button></form>
+          <p class="tiny-note">Adds a link shortcut to your local review stack. Saving to Pinterest requires a Pin ID and board permission.</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="settings-drawer" id="settingsDrawer" aria-hidden="true">
+    <div class="drawer-head"><div><p class="eyebrow">PERSONAL SETTINGS</p><h2>Fine tune<br><em>the archive.</em></h2></div><button class="icon-btn" id="closeSettings" aria-label="Kapat">×</button></div>
+    <div class="setting-row"><div><strong>Interface sounds</strong><small>Quiet keep / pass feedback</small></div><label class="switch"><input type="checkbox" id="soundToggle" checked><span></span></label></div>
+    <div class="setting-row"><div><strong>Reduce motion</strong><small>Less movement between cards</small></div><label class="switch"><input type="checkbox" id="motionToggle"><span></span></label></div>
+    <div class="setting-row"><div><strong>Shuffle after the last card</strong><small>Start another round automatically</small></div><label class="switch"><input type="checkbox" id="shuffleToggle" checked><span></span></label></div>
+    <button class="text-btn" id="clearSession">CLEAR LOCAL SESSION DATA ↻</button>
+    <p class="tiny-note drawer-note">Your session likes, skips, theme and playlist are stored in this browser only. Pinterest actions are sent only after you connect and approve access.</p>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
